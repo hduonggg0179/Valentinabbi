@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi Yến Nhi ❤️</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ec5f8e; /* Màu hồng gốc của bạn */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Không cuộn trang */
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #fff0f5; /* Màu chữ sáng hơn xíu để nổi trên nền hồng đậm */
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Bóng chữ giúp dễ đọc hơn */
+        }
+
+        .gif-container img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 15px; /* Bo góc ảnh */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Bóng đổ cho ảnh */
+            border: 5px solid white; /* Viền trắng giống khung tranh */
+        }
+
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        /* --- STYLE NÚT BẤM XỊN XÒ --- */
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border: 3px solid white; /* Viền trắng nổi bật */
+            border-radius: 50px; /* Bo tròn */
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Bóng 3D */
+            position: relative;
+        }
+
+        /* Nút Yes - Xanh lá */
+        #yesBtn {
+            background: linear-gradient(to bottom, #66bb6a, #43a047); 
+            color: white;
+        }
+
+        /* Nút No - Đỏ */
+        #noBtn {
+            background: linear-gradient(to bottom, #ef5350, #e53935);
+            color: white;
+        }
+
+        /* Hiệu ứng khi di chuột vào */
+        .btn:hover {
+            transform: translateY(-3px); /* Bay lên xíu */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Hiệu ứng khi bấm xuống */
+        .btn:active {
+            transform: translateY(2px); /* Lún xuống */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Ẩn nội dung sau khi đồng ý */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="gif-container">
+            <img id="mainGif" src="https://media.tenor.com/K2sE88y2a40AAAAi/mocha-bear-hearts.gif" alt="Cute Gif">
+        </div>
+        
+        <h1 id="question">Iu làm Valentine của anh nhié? 💖</h1>
+
+        <div class="buttons">
+            <button id="yesBtn" class="btn" onclick="acceptLove()">Yes</button>
+            <button id="noBtn" class="btn" onclick="rejectLove()">No</button>
+        </div>
+    </div>
+
+    <script>
+        let noClickCount = 0;
+        
+        // Các câu năn nỉ (giữ nguyên của bạn)
+        const texts = [
+            "No",
+            "Em chắc chưa?",
+            "Thật sự không luôn?",
+            "Đừng làm thế mà :(",
+            "Suy nghĩ lại đi bé ơi!",
+            "Anh sẽ buồn lắm đó...",
+            "Rất rất buồn...",
+            "Thôi mà đồng ý đi!!!",
+            "Đừng bấm nút này nữa 😭",
+            "Chịu thua em luôn..."
+        ];
+
+        function rejectLove() {
+            noClickCount++;
+            
+            // Thay đổi nội dung nút No
+            const noBtn = document.getElementById("noBtn");
+            if (noClickCount < texts.length) {
+                noBtn.innerText = texts[noClickCount];
+            } else {
+                noBtn.innerText = texts[texts.length - 1];
+            }
+
+            // Phóng to nút Yes
+            const yesBtn = document.getElementById("yesBtn");
+            const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+            const newSize = currentSize * 1.4; 
+            yesBtn.style.fontSize = newSize + "px";
+
+            // Mình thêm đoạn này để nút to ra cân đối hơn, không bị vỡ
+            const currentPadding = parseFloat(window.getComputedStyle(yesBtn).paddingTop);
+            yesBtn.style.padding = (currentPadding * 1.2) + "px " + (currentPadding * 2) + "px";
+        }
+
+        function acceptLove() {
+            // Thay đổi giao diện khi ấn nút Yes (giữ nguyên text của bạn)
+            document.getElementById("question").innerText = "Hj! Anh yêu iu nhiều lắm! 🥰";
+            
+            // Ảnh kết thúc
+            document.getElementById("mainGif").src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
+            
+            // Ẩn 2 nút
+            document.querySelector(".buttons").style.display = "none";
+        }
+    </script>
+</body>
+</html>
