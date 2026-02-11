@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gửi Yến Nhi ❤️</title>
+    <title>Gửi Em Yêu ❤️</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -14,28 +14,31 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            overflow: hidden; /* Không cuộn trang */
+            overflow: hidden; 
+            position: relative;
         }
 
+        /* --- PHẦN 1: GIAO DIỆN CÂU HỎI (Ban đầu hiện) --- */
         .container {
             text-align: center;
             position: relative;
-            z-index: 1;
+            z-index: 10; 
+            transition: opacity 0.5s ease; /* Hiệu ứng mờ dần khi ẩn */
         }
 
         h1 {
-            color: #fff0f5; /* Màu chữ sáng hơn xíu để nổi trên nền hồng đậm */
+            color: #fff0f5; 
             font-size: 2.5rem;
             margin-bottom: 25px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Bóng chữ giúp dễ đọc hơn */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2); 
         }
 
         .gif-container img {
             max-width: 300px;
             height: auto;
-            border-radius: 15px; /* Bo góc ảnh */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Bóng đổ cho ảnh */
-            border: 5px solid white; /* Viền trắng giống khung tranh */
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+            border: 5px solid white; 
         }
 
         .buttons {
@@ -46,57 +49,102 @@
             flex-wrap: wrap;
         }
 
-        /* --- STYLE NÚT BẤM XỊN XÒ --- */
         .btn {
             padding: 15px 40px;
             font-size: 1.3rem;
             font-weight: bold;
-            border: 3px solid white; /* Viền trắng nổi bật */
-            border-radius: 50px; /* Bo tròn */
+            border: 3px solid white; 
+            border-radius: 50px; 
             cursor: pointer;
             transition: all 0.2s ease-in-out;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Bóng 3D */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); 
             position: relative;
         }
 
-        /* Nút Yes - Xanh lá */
         #yesBtn {
             background: linear-gradient(to bottom, #66bb6a, #43a047); 
             color: white;
         }
 
-        /* Nút No - Đỏ */
         #noBtn {
             background: linear-gradient(to bottom, #ef5350, #e53935);
             color: white;
         }
 
-        /* Hiệu ứng khi di chuột vào */
-        .btn:hover {
-            transform: translateY(-3px); /* Bay lên xíu */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        /* --- PHẦN 2: GIAO DIỆN BỨC THƯ (Ban đầu ẩn) --- */
+        #letter {
+            display: none; /* Ẩn đi */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Căn giữa màn hình */
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            max-width: 90%;
+            width: 400px; /* Độ rộng bức thư */
+            z-index: 20; /* Nằm đè lên trên tất cả */
+            text-align: center;
+            animation: popUp 0.5s ease-out;
         }
 
-        /* Hiệu ứng khi bấm xuống */
-        .btn:active {
-            transform: translateY(2px); /* Lún xuống */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        /* Ảnh trong bức thư */
+        .photo-couple {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 3px solid #ec5f8e; /* Viền hồng cho ảnh */
+            margin-bottom: 15px;
         }
 
-        /* Ẩn nội dung sau khi đồng ý */
-        .hidden {
-            display: none;
+        /* Nội dung thư */
+        .message-content {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.6;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .signature {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #ec5f8e;
+            font-size: 1.2rem;
+        }
+
+        /* Hiệu ứng hiện thư */
+        @keyframes popUp {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        /* --- HIỆU ỨNG TRÁI TIM --- */
+        .heart-falling {
+            position: absolute;
+            bottom: -20px; 
+            color: #fff; 
+            z-index: 1; 
+            pointer-events: none; 
+            animation: floatUp linear forwards;
+            font-weight: bold;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="container" id="mainScreen">
         <div class="gif-container">
-            <img id="mainGif" src="https://media.tenor.com/K2sE88y2a40AAAAi/mocha-bear-hearts.gif" alt="Cute Gif">
+            <img src="https://media.tenor.com/K2sE88y2a40AAAAi/mocha-bear-hearts.gif" alt="Cute Gif">
         </div>
         
-        <h1 id="question">Iu làm Valentine của anh nhé? 💖</h1>
+        <h1 id="question">Iu làm Valentine của anh nhié? 💖</h1>
 
         <div class="buttons">
             <button id="yesBtn" class="btn" onclick="acceptLove()">Yes</button>
@@ -104,56 +152,73 @@
         </div>
     </div>
 
-    <script>
-        let noClickCount = 0;
+    <div id="letter">
+        <img src="chung-minh.jpg" alt="Ảnh của chúng mình" class="photo-couple">
         
-        // Các câu năn nỉ 
+        <div class="message-content">
+            "Cảm ơn bé đã đến bên anh. <br>
+            Valentine này và nhiều Valentine sau nữa,<br>
+            mình hãy cứ nắm tay nhau thật chặt nhé! <br>
+            Yêu em rất nhiều! ❤️"
+        </div>
+        
+        <div class="signature">- Anh của em -</div>
+    </div>
+
+    <script>
+        /* --- LOGIC NÚT NO (Năn nỉ) --- */
+        let noClickCount = 0;
         const texts = [
-            "No",
-            "Em chắc chưa?",
-            "Thật sự không luôn?",
-            "Đừng làm thế mà :(",
-            "Suy nghĩ lại đi iu ơi!",
-            "Anh sẽ buồn lắm đó...",
-            "Rất rất buồn...",
-            "Thôi mà đồng ý đi!!!",
-            "Đừng bấm nút này nữa ",
-            "Chịu thua em luôn..."
+            "No", "Em chắc chưa?", "Thật sự không luôn?", "Đừng làm thế mà :(",
+            "Suy nghĩ lại đi bé ơi!", "Anh sẽ buồn lắm đó...", "Rất rất buồn...",
+            "Thôi mà đồng ý đi!!!", "Đừng bấm nút này nữa 😭", "Chịu thua em luôn..."
         ];
 
         function rejectLove() {
             noClickCount++;
-            
-            // Thay đổi nội dung nút No
             const noBtn = document.getElementById("noBtn");
             if (noClickCount < texts.length) {
                 noBtn.innerText = texts[noClickCount];
             } else {
                 noBtn.innerText = texts[texts.length - 1];
             }
-
-            // Phóng to nút Yes
             const yesBtn = document.getElementById("yesBtn");
             const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-            const newSize = currentSize * 1.4; 
-            yesBtn.style.fontSize = newSize + "px";
-
-            // Mình thêm đoạn này để nút to ra cân đối hơn, không bị vỡ
+            yesBtn.style.fontSize = (currentSize * 1.4) + "px";
             const currentPadding = parseFloat(window.getComputedStyle(yesBtn).paddingTop);
             yesBtn.style.padding = (currentPadding * 1.2) + "px " + (currentPadding * 2) + "px";
         }
 
+        /* --- LOGIC NÚT YES (Hiện thư) --- */
         function acceptLove() {
-            // Thay đổi giao diện khi ấn nút Yes 
-            document.getElementById("question").innerText = "Hj! Anh yêu iu nhiều lắm! 🥰";
+            // 1. Ẩn giao diện câu hỏi
+            document.getElementById("mainScreen").style.display = "none";
             
-            // Ảnh kết thúc
-            document.getElementById("mainGif").src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
+            // 2. Hiện bức thư
+            document.getElementById("letter").style.display = "block";
             
-            // Ẩn 2 nút
-            document.querySelector(".buttons").style.display = "none";
+            // 3. Tăng tốc độ mưa trái tim cho lãng mạn
+            clearInterval(heartInterval); // Xóa tốc độ cũ
+            setInterval(createHeart, 20); // Tốc độ siêu nhanh
         }
+
+        /* --- HIỆU ỨNG MƯA TRÁI TIM --- */
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-falling');
+            heart.innerHTML = '❤'; 
+            heart.style.left = Math.random() * 100 + 'vw';
+            const size = Math.random() * 30 + 10 + 'px';
+            heart.style.fontSize = size;
+            const duration = Math.random() * 3 + 2 + 's';
+            heart.style.animationDuration = duration;
+            heart.style.opacity = Math.random() * 0.5 + 0.3;
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        
+        // Lưu lại interval để sau này chỉnh tốc độ
+        let heartInterval = setInterval(createHeart, 50); 
     </script>
 </body>
 </html>
-
