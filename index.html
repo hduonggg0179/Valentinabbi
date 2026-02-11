@@ -49,6 +49,7 @@
             flex-wrap: wrap;
         }
 
+        /* --- STYLE NÚT BẤM (Đã sửa thành màu HỒNG) --- */
         .btn {
             padding: 15px 40px;
             font-size: 1.3rem;
@@ -59,16 +60,24 @@
             transition: all 0.2s ease-in-out;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); 
             position: relative;
+            color: white; /* Chữ trắng */
         }
 
-        #yesBtn {
-            background: linear-gradient(to bottom, #66bb6a, #43a047); 
-            color: white;
+        /* Cả 2 nút Yes và No đều dùng màu hồng */
+        #yesBtn, #noBtn {
+            background-color: #ff80ab; /* Màu hồng tươi */
         }
 
-        #noBtn {
-            background: linear-gradient(to bottom, #ef5350, #e53935);
-            color: white;
+        /* Hiệu ứng khi di chuột vào (đậm hơn) */
+        .btn:hover {
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            background-color: #ff4081; /* Màu hồng đậm hơn khi hover */
+        }
+
+        .btn:active {
+            transform: translateY(2px); 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         /* --- PHẦN 2: GIAO DIỆN BỨC THƯ (Ban đầu ẩn) --- */
@@ -230,7 +239,3 @@
     </script>
 </body>
 </html>
-
-
-
-
