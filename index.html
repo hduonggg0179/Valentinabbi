@@ -18,12 +18,12 @@
             position: relative;
         }
 
-        /* --- PHẦN 1: GIAO DIỆN CÂU HỎI (Ban đầu hiện) --- */
+        /* --- GIAO DIỆN CÂU HỎI  --- */
         .container {
             text-align: center;
             position: relative;
             z-index: 10; 
-            transition: opacity 0.5s ease; /* Hiệu ứng mờ dần khi ẩn */
+            transition: opacity 0.5s ease; 
         }
 
         h1 {
@@ -49,7 +49,7 @@
             flex-wrap: wrap;
         }
 
-        /* --- STYLE NÚT BẤM (Đã sửa thành màu HỒNG) --- */
+        /* --- STYLE NÚT BẤM  --- */
         .btn {
             padding: 15px 40px;
             font-size: 1.3rem;
@@ -60,19 +60,19 @@
             transition: all 0.2s ease-in-out;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); 
             position: relative;
-            color: white; /* Chữ trắng */
+            color: white;
         }
 
-        /* Cả 2 nút Yes và No đều dùng màu hồng */
+        
         #yesBtn, #noBtn {
-            background-color: #ff80ab; /* Màu hồng tươi */
+            background-color: #ff80ab; 
         }
 
-        /* Hiệu ứng khi di chuột vào (đậm hơn) */
+        /* Hiệu ứng khi di chuột vào  */
         .btn:hover {
             transform: translateY(-3px); 
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-            background-color: #ff4081; /* Màu hồng đậm hơn khi hover */
+            background-color: #ff4081;
         }
 
         .btn:active {
@@ -80,20 +80,20 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
-        /* --- PHẦN 2: GIAO DIỆN BỨC THƯ (Ban đầu ẩn) --- */
+        /* ---  GIAO DIỆN BỨC THƯ  --- */
         #letter {
-            display: none; /* Ẩn đi */
+            display: none; 
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%); /* Căn giữa màn hình */
+            transform: translate(-50%, -50%); 
             background-color: #fff;
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 0 20px rgba(0,0,0,0.3);
             max-width: 90%;
-            width: 400px; /* Độ rộng bức thư */
-            z-index: 20; /* Nằm đè lên trên tất cả */
+            width: 400px;
+            z-index: 20;
             text-align: center;
             animation: popUp 0.5s ease-out;
         }
@@ -103,7 +103,7 @@
             width: 100%;
             height: auto;
             border-radius: 10px;
-            border: 3px solid #ec5f8e; /* Viền hồng cho ảnh */
+            border: 3px solid #ec5f8e;
             margin-bottom: 15px;
         }
 
@@ -153,7 +153,7 @@
             <img src="https://media.tenor.com/K2sE88y2a40AAAAi/mocha-bear-hearts.gif" alt="Cute Gif">
         </div>
         
-        <h1 id="question">Iu làm Valentine của anh nhié? 💖</h1>
+        <h1 id="question">Iu làm Valentine năm nay của anh nhé? 💖</h1>
 
         <div class="buttons">
             <button id="yesBtn" class="btn" onclick="acceptLove()">Yes</button>
@@ -173,9 +173,7 @@
             Luôn yêu cuộc đời và giữ cho mình đủ đầy khát vọng mà em hằng mong ước,<br>
             Và mong sao những khát vọng ấy luôn có tên anh<br>
             <br>
-            Chỉ cầu mong khi xuân sang hè tới<br>
-            Ta vẫn luôn ở đó, vẫn đợi nhau một đời<br>
-            <br>
+           
             Thương em rất nhiều! "
         </div>
         
@@ -183,12 +181,12 @@
     </div>
 
     <script>
-        /* --- LOGIC NÚT NO (Năn nỉ) --- */
+        /* --- LOGIC NÚT NO  --- */
         let noClickCount = 0;
         const texts = [
             "No", "Em chắc chưa?", "Thật sự không luôn?", "Đừng làm thế mà :(",
-            "Suy nghĩ lại đi bé ơi!", "Anh sẽ buồn lắm đó...", "Rất rất buồn...",
-            "Thôi mà đồng ý đi!!!", "Đừng bấm nút này nữa 😭", "Chịu thua em luôn..."
+            "Suy nghĩ lại đi iu ơi!", "Anh sẽ buồn lắm đó...", "Rất rất buồn...",
+            "Thôi mà đồng ý đi!!!", "Đừng bấm nút này nữa ", "Chịu thua em luôn..."
         ];
 
         function rejectLove() {
@@ -206,7 +204,7 @@
             yesBtn.style.padding = (currentPadding * 1.2) + "px " + (currentPadding * 2) + "px";
         }
 
-        /* --- LOGIC NÚT YES (Hiện thư) --- */
+        /* --- LOGIC NÚT YES --- */
         function acceptLove() {
             // 1. Ẩn giao diện câu hỏi
             document.getElementById("mainScreen").style.display = "none";
@@ -239,3 +237,4 @@
     </script>
 </body>
 </html>
+
